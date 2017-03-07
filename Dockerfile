@@ -102,8 +102,8 @@ RUN apt-get install -y --force-yes php5-xdebug && \
     echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Install PHPUnit 5.5
-RUN wget https://phar.phpunit.de/phpunit.phar -O /usr/local/bin/phpunit && \
-    chmod +x /usr/local/bin/phpunit
+RUN wget https://phar.phpunit.de/phpunit-5.7.13.phar -O /usr/local/bin/phpunit && \
+ chmod +x /usr/local/bin/phpunit
 
 
 # Clean repository
