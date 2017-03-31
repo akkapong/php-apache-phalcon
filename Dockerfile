@@ -1,5 +1,6 @@
 FROM php:5.6-apache
 
+
 # Get repository and install wget and vim
 RUN apt-get update && apt-get install --no-install-recommends -y \
         wget \
@@ -83,6 +84,10 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
             redis \
             gearman \
             opcache
+
+# Install mongodb extension
+RUN pecl install mongodb && \
+    echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini
 
 
 # Install phalcon extension (Phalcon Framework 2)
