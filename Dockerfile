@@ -114,17 +114,6 @@ RUN wget https://phar.phpunit.de/phpunit-5.7.13.phar -O /usr/local/bin/phpunit &
 # Enable Apache2 modules
 RUN a2enmod rewrite
 
-# Install PHP mongo
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-    echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list && \
-    apt-get update && \
-    apt-get install php5-dev php5-cli php-pear -y && \
-    printf "\n" | pecl install mongo
-# add to php ini 
-RUN echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini
-RUN echo "extension=mongo.so" > /etc/php5/mods-available/mongo.ini
-RUN php5enmod mongo
-
 # Clean repository
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/*
